@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-hijo',
@@ -7,11 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HijoComponent implements OnInit {
 
-  @Input() nombreHijo: string = "Esperando a cargar el nombre"
+  @Input() nombreHijo: string = "Esperando el nombre del padre"
+  @Output() cambioNombreHijo = new EventEmitter<any>();
+
   constructor() { }
   ngOnInit(): void {
   }
-  cambiarNombreH() {
-    this.nombreHijo = "El hijo está cambiando el nombre";
+
+  cambiarNombre() {
+    this.nombreHijo = "Nombre del hijo";
+    this.cambioNombreHijo.emit(this.nombreHijo);
   }
 }
